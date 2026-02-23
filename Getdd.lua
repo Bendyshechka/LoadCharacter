@@ -240,7 +240,7 @@ return function(c)
 			end
 		end
 	end
-
-	return HttpService:JSONEncode(skindata)
+	local bb = HttpService:JSONEncode(skindata)
+	return bb
 end
 
