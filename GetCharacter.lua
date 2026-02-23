@@ -1,0 +1,324 @@
+
+
+return function(username)
+	local Players = game:GetService("Players")
+
+	local userId = Players:GetUserIdFromNameAsync(username)
+	username = Players:GetNameFromUserIdAsync(userId) -- update capitalization
+	local characterData = Players:GetCharacterAppearanceAsync(userId)
+
+	local characterModel = Instance.new("Model")
+	task.spawn(function()
+		local Humanoid = Instance.new("Humanoid")
+		Humanoid.Parent = characterModel
+
+		--HEAD
+
+		local Head = Instance.new("Part")
+		Head.Name = "Head"
+		Head.Parent = characterModel
+		Head.Size = Vector3.new(2, 1, 1)
+		local FaceCenterAttachment = Instance.new("Attachment")
+		FaceCenterAttachment.Parent = Head
+		FaceCenterAttachment.Name = "FaceCenterAttachment"
+		FaceCenterAttachment.Position = Vector3.new(0,0,0)
+		FaceCenterAttachment.Orientation = Vector3.new(0,0,0)
+		FaceCenterAttachment.Axis = Vector3.new(1,0,0)
+		FaceCenterAttachment.SecondaryAxis = Vector3.new(0,1,0)
+
+		local FaceFrontAttachment = Instance.new("Attachment")
+		FaceFrontAttachment.Parent = Head
+		FaceFrontAttachment.Name = "FaceFrontAttachment"
+		FaceFrontAttachment.Position = Vector3.new(0,0,-0.6)
+		FaceFrontAttachment.Orientation = Vector3.new(0,0,0)
+		FaceFrontAttachment.Axis = Vector3.new(1,0,0)
+		FaceFrontAttachment.SecondaryAxis = Vector3.new(0,1,0)
+
+		local HairAttachment = Instance.new("Attachment")
+		HairAttachment.Parent = Head
+		HairAttachment.Name = "HairAttachment"
+		HairAttachment.Position = Vector3.new(0,0.6,0)
+		HairAttachment.Orientation = Vector3.new(0,0,0)
+		HairAttachment.Axis = Vector3.new(1,0,0)
+		HairAttachment.SecondaryAxis = Vector3.new(0,1,0)
+
+		local HatAttachment = Instance.new("Attachment")
+		HatAttachment.Parent = Head
+		HatAttachment.Name = "HatAttachment"
+		HatAttachment.Position = Vector3.new(0,0.6,0)
+		HatAttachment.Orientation = Vector3.new(0,0,0)
+		HatAttachment.Axis = Vector3.new(1,0,0)
+		HatAttachment.SecondaryAxis = Vector3.new(0,1,0)
+
+		local Mesh = Instance.new("SpecialMesh")
+		Mesh.Parent = Head
+		Mesh.Name = "Mesh"
+		Mesh.MeshType = Enum.MeshType.Head
+		Mesh.Offset = Vector3.new(0,0,0)
+		Mesh.Scale = Vector3.new(1.25, 1.25, 1.25)
+		Mesh.VertexColor = Vector3.new(1,1,1)
+
+		local face = Instance.new("Decal")
+		face.Name = "face"
+		face.Parent = Head
+		face.Color3 = Color3.fromRGB(255,255,255)
+		face.ColorMap = "rbxasset://textures/face.png"
+		face.Transparency = 0
+
+		--HRP
+
+		local HumanoidRootPart = Instance.new("Part")
+		HumanoidRootPart.Name = "HumanoidRootPart"
+		HumanoidRootPart.Parent = characterModel
+		HumanoidRootPart.Transparency = 1
+		HumanoidRootPart.CanCollide = false
+		HumanoidRootPart.Size = Vector3.new(2, 2, 1)
+
+		local RootJoint = Instance.new("Motor6D")
+		RootJoint.Name = "RootJoint"
+		RootJoint.Parent = HumanoidRootPart
+		RootJoint.C0 = CFrame.new(0,0,0) * CFrame.Angles(math.rad(-90), math.rad(-180), 0)
+		RootJoint.C1 = CFrame.new(0,0,0) * CFrame.Angles(math.rad(-90), math.rad(-180), 0)
+		RootJoint.CurrentAngle = 0
+		RootJoint.DesiredAngle = 0
+		RootJoint.MaxVelocity = 0.1
+		RootJoint.Part0 = HumanoidRootPart
+
+		--LEFT ARM
+		local LeftArm = Instance.new("Part")
+		LeftArm.Name = "Left Arm"
+		LeftArm.Parent = characterModel
+		LeftArm.CanCollide = false
+		LeftArm.Size = Vector3.new(1, 2, 1)
+
+		local LeftShoulderAttachment = Instance.new("Attachment")
+		LeftShoulderAttachment.Name = "LeftShoulderAttachment"
+		LeftShoulderAttachment.Parent = LeftArm
+		LeftShoulderAttachment.Position = Vector3.new(0,1,0)
+		LeftShoulderAttachment.Orientation = Vector3.new(0,0,0)
+		LeftShoulderAttachment.Axis = Vector3.new(1,0,0)
+		LeftShoulderAttachment.SecondaryAxis = Vector3.new(0,1,0)
+
+		--LEFT LEG
+		local LeftLeg = Instance.new("Part")
+		LeftLeg.Name = "Left Leg"
+		LeftLeg.Parent = characterModel
+		LeftLeg.CanCollide = false
+		LeftLeg.Size = Vector3.new(1, 2, 1)
+
+		--RIGHT ARM
+		local RightArm = Instance.new("Part")
+		RightArm.Name = "Right Arm"
+		RightArm.Parent = characterModel
+		RightArm.CanCollide = false
+		RightArm.Size = Vector3.new(1, 2, 1)
+
+		local RightShoulderAttachment = Instance.new("Attachment")
+		RightShoulderAttachment.Name = "RightShoulderAttachment"
+		RightShoulderAttachment.Parent = RightArm
+		RightShoulderAttachment.Position = Vector3.new(0,1,0)
+		RightShoulderAttachment.Orientation = Vector3.new(0,0,0)
+		RightShoulderAttachment.Axis = Vector3.new(1,0,0)
+		RightShoulderAttachment.SecondaryAxis = Vector3.new(0,1,0)
+
+		--RIGHT LEG
+		local RightLeg = Instance.new("Part")
+		RightLeg.Name = "Right Leg"
+		RightLeg.Parent = characterModel
+		RightLeg.CanCollide = false
+		RightLeg.Size = Vector3.new(1, 2, 1)
+
+		--TORSO
+		local Torso = Instance.new("Part")
+		Torso.Name = "Torso"
+		Torso.Parent = characterModel
+		Torso.CanCollide = true
+		Torso.Size = Vector3.new(2, 2, 1)
+		RootJoint.Part1 = Torso
+
+		local BodyBackAttachment = Instance.new("Attachment")
+		BodyBackAttachment.Name = "BodyBackAttachment"
+		BodyBackAttachment.Parent = Torso
+		BodyBackAttachment.Position = Vector3.new(0, 0, 0.5)
+		BodyBackAttachment.Axis = Vector3.new(1, 0, 0)
+		BodyBackAttachment.SecondaryAxis = Vector3.new(0, 1, 0)
+
+		local BodyFrontAttachment = Instance.new("Attachment")
+		BodyFrontAttachment.Name = "BodyFrontAttachment"
+		BodyFrontAttachment.Parent = Torso
+		BodyFrontAttachment.Position = Vector3.new(0, 0, -0.5)
+		BodyFrontAttachment.Axis = Vector3.new(1, 0, 0)
+		BodyFrontAttachment.SecondaryAxis = Vector3.new(0, 1, 0)
+
+		local LeftCollarAttachment = Instance.new("Attachment")
+		LeftCollarAttachment.Name = "LeftCollarAttachment"
+		LeftCollarAttachment.Parent = Torso
+		LeftCollarAttachment.Position = Vector3.new(-1, 1, 0)
+		LeftCollarAttachment.Axis = Vector3.new(1, 0, 0)
+		LeftCollarAttachment.SecondaryAxis = Vector3.new(0, 1, 0)
+
+		local NeckAttachment = Instance.new("Attachment")
+		NeckAttachment.Name = "NeckAttachment"
+		NeckAttachment.Parent = Torso
+		NeckAttachment.Position = Vector3.new(0, 1, 0)
+		NeckAttachment.Axis = Vector3.new(1, 0, 0)
+		NeckAttachment.SecondaryAxis = Vector3.new(0, 1, 0)
+
+		local RightCollarAttachment = Instance.new("Attachment")
+		RightCollarAttachment.Name = "RightCollarAttachment"
+		RightCollarAttachment.Parent = Torso
+		RightCollarAttachment.Position = Vector3.new(1, 1, 0)
+		RightCollarAttachment.Axis = Vector3.new(1, 0, 0)
+		RightCollarAttachment.SecondaryAxis = Vector3.new(0, 1, 0)
+
+		local WaistBackAttachment = Instance.new("Attachment")
+		WaistBackAttachment.Name = "WaistBackAttachment"
+		WaistBackAttachment.Parent = Torso
+		WaistBackAttachment.Position = Vector3.new(0, -1, 0.5)
+		WaistBackAttachment.Axis = Vector3.new(1, 0, 0)
+		WaistBackAttachment.SecondaryAxis = Vector3.new(0, 1, 0)
+
+		local WaistCenterAttachment = Instance.new("Attachment")
+		WaistCenterAttachment.Name = "WaistCenterAttachment"
+		WaistCenterAttachment.Parent = Torso
+		WaistCenterAttachment.Position = Vector3.new(0, -1, 0)
+		WaistCenterAttachment.Axis = Vector3.new(1, 0, 0)
+		WaistCenterAttachment.SecondaryAxis = Vector3.new(0, 1, 0)
+
+		local WaistFrontAttachment = Instance.new("Attachment")
+		WaistFrontAttachment.Name = "WaistFrontAttachment"
+		WaistFrontAttachment.Parent = Torso
+		WaistFrontAttachment.Position = Vector3.new(0, -1, -0.5)
+		WaistFrontAttachment.Axis = Vector3.new(1, 0, 0)
+		WaistFrontAttachment.SecondaryAxis = Vector3.new(0, 1, 0)
+
+		local roblox = Instance.new("Decal")
+		roblox.Parent = Torso
+		roblox.Name = "roblox"
+		roblox.Color3 = Color3.fromRGB(255,255,255)
+		roblox.ColorMap = ""
+
+		local LeftHip = Instance.new("Motor6D")
+		LeftHip.Parent = Torso
+		LeftHip.Name = "Left Hip"
+		LeftHip.C0 = CFrame.new(-1,-1, 0) * CFrame.Angles(math.rad(0), math.rad(-90), math.rad(0))
+		LeftHip.C1 = CFrame.new(-0.5, 1, 0) * CFrame.Angles(math.rad(0), math.rad(-90), math.rad(0))
+		LeftHip.CurrentAngle = 0
+		LeftHip.DesiredAngle = 0
+		LeftHip.MaxVelocity = 0.1
+		LeftHip.Part0 = Torso
+		LeftHip.Part1 = LeftLeg
+
+		local LeftShoulder = Instance.new("Motor6D")
+		LeftShoulder.Parent = Torso
+		LeftShoulder.Name = "Left Shoulder"
+		LeftShoulder.C0 = CFrame.new(-1, 0.5, 0) * CFrame.Angles(math.rad(0), math.rad(-90), math.rad(0))
+		LeftShoulder.C1 = CFrame.new(0.5, 0.5, 0) * CFrame.Angles(math.rad(0), math.rad(-90), math.rad(0))
+		LeftShoulder.CurrentAngle = 0
+		LeftShoulder.DesiredAngle = 0
+		LeftShoulder.MaxVelocity = 0.1
+		LeftShoulder.Part0 = Torso
+		LeftShoulder.Part1 = LeftArm
+
+		local Neck = Instance.new("Motor6D")
+		Neck.Parent = Torso
+		Neck.Name = "Neck"
+		Neck.C0 = CFrame.new(0, 1, 0) * CFrame.Angles(math.rad(-90), math.rad(-180), math.rad(0))
+		Neck.C1 = CFrame.new(0, -0.5, 0) * CFrame.Angles(math.rad(-90), math.rad(-180), math.rad(0))
+		Neck.CurrentAngle = 0
+		Neck.DesiredAngle = 0
+		Neck.MaxVelocity = 0.1
+		Neck.Part0 = Torso
+		Neck.Part1 = Head
+
+		local RightHip = Instance.new("Motor6D")
+		RightHip.Parent = Torso
+		RightHip.Name = "Right Hip"
+		RightHip.C0 = CFrame.new(1,-1, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(0))
+		RightHip.C1 = CFrame.new(0.5, 1, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(0))
+		RightHip.CurrentAngle = 0
+		RightHip.DesiredAngle = 0
+		RightHip.MaxVelocity = 0.1
+		RightHip.Part0 = Torso
+		RightHip.Part1 = RightLeg
+
+		local RightShoulder = Instance.new("Motor6D")
+		RightShoulder.Parent = Torso
+		RightShoulder.Name = "Right Shoulder"
+		RightShoulder.C0 = CFrame.new(1, 0.5, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(0))
+		RightShoulder.C1 = CFrame.new(-0.5, 0.5, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(0))
+		RightShoulder.CurrentAngle = 0
+		RightShoulder.DesiredAngle = 0
+		RightShoulder.MaxVelocity = 0.1
+		RightShoulder.Part0 = Torso
+		RightShoulder.Part1 = RightArm
+
+	end)
+	local characterHead = characterModel.Head
+	local characterHumanoid = characterModel.Humanoid
+	local isR15 = false -- populate the variable if isR15 was not supplied
+
+	for _,obj in next, characterData:GetChildren() do
+		if obj:IsA("Accessory") then
+			characterHumanoid:AddAccessory(obj)
+		end
+	end
+
+	for _,obj in next, characterData:GetChildren() do
+		if obj:IsA("ValueBase") and isR15 then
+			obj.Parent = characterHumanoid
+		end
+	end
+
+	for _,obj in next, characterData:GetChildren() do
+		if isR15 then
+			if obj.Name == "R15ArtistIntent" then
+				for _,bodyPart in next, obj:GetChildren() do
+					characterHumanoid:ReplaceBodyPartR15(Enum.BodyPartR15[bodyPart.Name], bodyPart)
+				end
+			end
+		else
+			if obj.Name == "R6" then
+				obj:GetChildren()[1].Parent = characterModel
+			end
+		end
+	end
+
+	local bodyColors = characterData:FindFirstChild("Body Colors")
+	if bodyColors then
+		bodyColors.Parent = characterModel
+	end
+
+	local shirt = characterData:FindFirstChild("Shirt")
+	if shirt then
+		shirt.Parent = characterModel
+	end
+
+	local tshirt = characterData:FindFirstChild("Shirt Graphic")
+	if tshirt then
+		tshirt.Parent = characterModel
+	end
+
+	local pants = characterData:FindFirstChild("Pants")
+	if pants then
+		pants.Parent = characterModel
+	end
+
+	local head = characterData:FindFirstChild("Mesh")
+	if head then
+		characterHead.Mesh:Destroy()
+		head.Parent = characterHead
+	end
+
+	local face = characterData:FindFirstChild("face")
+	if face then
+		characterHead.face:Destroy()
+		face.Parent = characterHead
+	end
+
+	characterModel.Name = username
+
+	characterData:Destroy()
+
+	return characterModel
+end
