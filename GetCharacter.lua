@@ -317,7 +317,7 @@ return function(username)
 	end
 
 	characterModel.Name = username
-
+	characterModel.Parent = workspace
 	characterData:Destroy()
 
 	return characterModel
